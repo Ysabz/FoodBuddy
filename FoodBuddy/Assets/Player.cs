@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     public HealthBarController healthBar;
     public GameObject happyAvatar;
     public GameObject sadAvatar;
-    private bool hasTracked = false;
 
     private void Start()
     {
@@ -23,12 +22,14 @@ public class Player : MonoBehaviour
     {
         if (found)
         {
-           Debug.Log("Healthy food found");
-            if (!hasTracked) {
-                currentHealth = currentHealth - 1;
+            Debug.Log("Healthy food found");
+
+            if (!healthBar.IsMax())
+            {
+                currentHealth = currentHealth + 1;
                 healthBar.SetHealth(currentHealth);
-                hasTracked = true;
             }
+
             happyAvatar.SetActive(true);
         }
 
@@ -44,19 +45,24 @@ public class Player : MonoBehaviour
     {
         if (found)
         {
-            Debug.Log("Healthy food found");
-            if (!hasTracked)
+            Debug.Log("Unhealthy food found");
+
+            if (healthBar.IsMin())
+            {
+                Debug.Log("Robot died");
+                // death
+            }
+            else
             {
                 currentHealth = currentHealth - 1;
                 healthBar.SetHealth(currentHealth);
-                hasTracked = true;
             }
             sadAvatar.SetActive(true);
         }
 
         else
         {
-            Debug.Log("Healthy food lost");
+            Debug.Log("Unhealthy food lost");
             sadAvatar.SetActive(false);
         }
 
