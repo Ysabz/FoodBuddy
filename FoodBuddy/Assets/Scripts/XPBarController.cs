@@ -3,28 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBarController : MonoBehaviour
+public class XPBarController : MonoBehaviour
 {
     public Slider slider;
-    public Gradient gradient;
-    public Image filled;
 
 
-    public void SetMaxHealth(int value)
+    public void SetMaxXP(int value)
     {
         slider.maxValue = value;
         slider.value = value;
-        filled.color = gradient.Evaluate(1f);
     }
 
     public bool IsMax()
     {
-        if(slider.value == slider.maxValue)
+        if (slider.value == slider.maxValue)
         {
-            Debug.Log("Max");
             return true;
         }
-        Debug.Log(slider.value+" not max");
         return false;
     }
 
@@ -36,9 +31,9 @@ public class HealthBarController : MonoBehaviour
         }
         return false;
     }
-    public void SetHealth(int value)
+
+    public void SetXP(int value)
     {
         slider.value = value;
-        filled.color = gradient.Evaluate(slider.normalizedValue);
     }
 }
