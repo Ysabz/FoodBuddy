@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
     public int maxHealth = 20;
     public int currentHealth;
     public HealthBarController healthBar;
+    public GameObject happyAvatar;
+    public GameObject sadAvatar;
+    private bool hasTracked = false;
 
     private void Start()
     {
@@ -16,23 +19,46 @@ public class Player : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
     }
 
-    public void Print(bool found)
+    public void PrintHappyAvatar(bool found)
     {
         if (found)
         {
            Debug.Log("Healthy food found");
-            currentHealth = currentHealth - 2;
-            healthBar.SetHealth(currentHealth - 2);
+            if (!hasTracked) {
+                currentHealth = currentHealth - 1;
+                healthBar.SetHealth(currentHealth);
+                hasTracked = true;
+            }
+            happyAvatar.SetActive(true);
         }
 
         else
         {
             Debug.Log("Healthy food lost");
-            currentHealth = currentHealth - 2;
-            healthBar.SetHealth(currentHealth - 2);
+            happyAvatar.SetActive(false);
         }
 
     }
 
+    public void PrintSadAvatar(bool found)
+    {
+        if (found)
+        {
+            Debug.Log("Healthy food found");
+            if (!hasTracked)
+            {
+                currentHealth = currentHealth - 1;
+                healthBar.SetHealth(currentHealth);
+                hasTracked = true;
+            }
+            sadAvatar.SetActive(true);
+        }
 
+        else
+        {
+            Debug.Log("Healthy food lost");
+            sadAvatar.SetActive(false);
+        }
+
+    }
 }
