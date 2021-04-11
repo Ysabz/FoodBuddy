@@ -11,7 +11,6 @@ public class XPBarController : MonoBehaviour
     public void SetMaxXP(int value)
     {
         slider.maxValue = value;
-        slider.value = value;
     }
 
     public bool IsMax()
