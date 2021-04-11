@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -14,6 +15,7 @@ public class Player : MonoBehaviour
     public int currentXP;
     public int currentLevel;
 
+    public TextAsset file;
     public GameObject level;
     public HealthBarController healthBar;
     public XPBarController XPBar;
@@ -22,25 +24,35 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-
-        StreamReader file = new StreamReader("Assets\\Data.txt");
-        string data = file.ReadLine();
-        currentLevel = Int32.Parse(data.Split(';')[0]);
-        currentHealth = Int32.Parse(data.Split(';')[1]);
-        currentXP = Int32.Parse(data.Split(';')[2]);
-        DateTime saveTime = DateTime.Parse(data.Split(';')[3]);
-        if ((DateTime.Now - saveTime).TotalDays >= 1)
+        string path = Application.persistentDataPath + "\\PlayerData.txt";
+        if (File.Exists(path))
         {
-            currentHealth = currentHealth - 2;
+            StreamReader file = new StreamReader(path);
+            string data = file.ReadLine();
+            currentLevel = Int32.Parse(data.Split(';')[0]);
+            currentHealth = Int32.Parse(data.Split(';')[1]);
+            currentXP = Int32.Parse(data.Split(';')[2]);
+            DateTime saveTime = DateTime.Parse(data.Split(';')[3]);
+            if ((DateTime.Now - saveTime).TotalDays >= 1)
+            {
+                currentHealth = currentHealth - 2;
+            }
         }
-        //currentHealth = maxHealth;
-        //currentXP = 0;
-        //currentLevel = 1;
+        else
+        {
+            StreamWriter file = File.CreateText(path);
+            file.WriteLine("1;20;0;" + DateTime.Now);
+            file.Close();
+            currentHealth = maxHealth;
+            currentXP = 0;
+            currentLevel = 1;
+        }
         XPBar.SetMaxXP(maxXP);
         healthBar.SetMaxHealth(maxHealth);
         XPBar.SetXP(currentXP);
         healthBar.SetHealth(currentHealth);
-        level.GetComponent<TextMeshProUGUI>().SetText("LVL "+currentLevel);
+        level.GetComponent<TextMeshProUGUI>().SetText("LVL " + currentLevel);
+
     }
 
     public void PrintHappyAvatar(bool found)
@@ -103,6 +115,6 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Hello");
         string data = currentLevel + ";" + currentHealth + ";" + currentXP + ";" + DateTime.Now;
-        File.WriteAllText("Assets\\Data.txt", data);
+        File.WriteAllText(Application.persistentDataPath + "\\PlayerData.txt", data);
     }
 }
