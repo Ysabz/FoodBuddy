@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
         currentLevel = 1;
         XPBar.SetMaxXP(maxXP);
         healthBar.SetMaxHealth(maxHealth);
-      //  level.GetComponent<TextMeshPro>().SetText("LVL 1");
+        level.GetComponent<TextMeshProUGUI>().SetText("LVL 1");
     }
 
     public void PrintHappyAvatar(bool found)
@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
             else
             {
                 currentLevel = currentLevel + 1;
-              //  level.GetComponent<TextMeshPro>().SetText("LVL " + currentLevel);
+                level.GetComponent<TextMeshProUGUI>().SetText("LVL " + currentLevel);
             }
 
             happyAvatar.SetActive(true);
