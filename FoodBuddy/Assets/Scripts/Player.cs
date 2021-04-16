@@ -73,6 +73,8 @@ public class Player : MonoBehaviour
             else
             {
                 currentLevel = currentLevel + 1;
+                currentXP = 0;
+                XPBar.SetXP(currentXP);
                 level.GetComponent<TextMeshProUGUI>().SetText("LVL " + currentLevel);
             }
 
@@ -94,6 +96,11 @@ public class Player : MonoBehaviour
             if (healthBar.IsMin())
             {
                 Debug.Log("Robot died");
+                currentLevel = 0;
+                currentXP = 0;
+                currentHealth = maxHealth;
+                XPBar.SetXP(currentXP);
+                healthBar.SetHealth(currentHealth);
                 // death
             }
             else

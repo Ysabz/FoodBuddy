@@ -1,14 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
-
-    public void NextScene()
+    public Player player;
+    public void NextScene(string scene)
     {
-        SceneManager.LoadScene("Main");
+        if(player != null)
+        {
+            string data = player.currentLevel + ";" + player.currentHealth + ";" + player.currentXP + ";" + DateTime.Now;
+            File.WriteAllText(Application.persistentDataPath + "\\PlayerData.txt", data);
+        }
+        SceneManager.LoadScene(scene);
     }
 
 }
