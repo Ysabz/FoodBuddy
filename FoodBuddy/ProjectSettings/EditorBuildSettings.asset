@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Badges.unity
     guid: 3b36cc1037d0ce34bb49c5b07f1a308b
+  - enabled: 1
+    path: Assets/Scenes/Journal.unity
+    guid: 14f38cd22d22c944a8e4e7c3bdc755ec
   m_configObjects:
     com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: 5fd1a78a0eff07e40a09654d6f1bfa7b,
       type: 2}

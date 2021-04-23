@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ScreenManager : MonoBehaviour
+public class AchievementManager : MonoBehaviour
 {
     public Canvas infoWindow;
     public GameObject textUI;

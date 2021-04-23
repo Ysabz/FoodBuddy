@@ -3,7 +3,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ChangeScene : MonoBehaviour
+public class MainManager : MonoBehaviour
 {
     public Player player;
     public void NextScene(string scene)
@@ -16,4 +16,16 @@ public class ChangeScene : MonoBehaviour
         SceneManager.LoadScene(scene);
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                SceneManager.LoadScene("Menu");
+            }
+
+        }
+    }
 }
