@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScreenManager : MonoBehaviour
@@ -41,7 +42,14 @@ public class ScreenManager : MonoBehaviour
         {
             infoWindow.gameObject.SetActive(false);
         }
+
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                SceneManager.LoadScene("Menu");
+            }
+
+        }
     }
-
-
 }
