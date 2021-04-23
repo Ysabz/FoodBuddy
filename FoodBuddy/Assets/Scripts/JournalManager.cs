@@ -6,8 +6,11 @@ using UnityEngine.UIElements;
 
 public class JournalManager : MonoBehaviour
 {
+
+    public AudioSource audio;
     public GameObject[] pages;
     private int counter = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,8 +30,9 @@ public class JournalManager : MonoBehaviour
         }
     }
 
-    public void incrementPage()
+    public void IncrementPage()
     {
+        audio.Play();
         if (counter < pages.Length - 1)
         {
             counter++;
@@ -37,8 +41,9 @@ public class JournalManager : MonoBehaviour
         }
     }
 
-    public void decrementPage()
+    public void DecrementPage()
     {
+        audio.Play();
         if (counter > 0)
         {
             counter--;

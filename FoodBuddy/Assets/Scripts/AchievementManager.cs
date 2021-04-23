@@ -16,7 +16,7 @@ public class AchievementManager : MonoBehaviour
     public Button healthyDrink1;
     public Button healthyDrink2;
     public Button healthyDrink3;
-
+    public AudioSource audio;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +30,7 @@ public class AchievementManager : MonoBehaviour
 
     public void OpenInfoWindow(string text, string title)
     {
+        audio.Play();
         textUI.GetComponent<TextMeshProUGUI>().text = text;
         titleUI.GetComponent<TextMeshProUGUI>().text = title;
         infoWindow.gameObject.SetActive(true);

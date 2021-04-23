@@ -3,11 +3,14 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainManager : MonoBehaviour
 {
     public Player player;
     public GameObject journalInfo;
+    public AudioSource audio1;
+    public Color pushedColor;
 
 
     void OnApplicationPause(bool pause)
@@ -25,7 +28,21 @@ public class MainManager : MonoBehaviour
 
     public void OpenJournalWindow()
     {
+        audio1.Play();
         journalInfo.gameObject.SetActive(true);
+    }
+
+    public void ChangeButtonColor(Button button)
+    {
+        audio1.Play();
+        if (button.GetComponent<Image>().color.Equals(Color.white))
+        {
+            button.GetComponent<Image>().color = pushedColor;
+        }
+        else
+        {
+            button.GetComponent<Image>().color = Color.white;
+        }
     }
 
     // Update is called once per frame
