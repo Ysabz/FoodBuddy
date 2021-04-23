@@ -6,16 +6,19 @@ using UnityEngine.SceneManagement;
 public class MainManager : MonoBehaviour
 {
     public Player player;
-    public void NextScene(string scene)
-    {
-        if(player != null)
-        {
-            string data = player.currentLevel + ";" + player.currentHealth + ";" + player.currentXP + ";" + DateTime.Now;
-            File.WriteAllText(Application.persistentDataPath + "\\PlayerData.txt", data);
-        }
-        SceneManager.LoadScene(scene);
-    }
 
+
+    void OnApplicationPause(bool pause)
+    {
+        if (pause)
+        {
+            if (player != null)
+            {
+                string data = player.currentLevel + ";" + player.currentHealth + ";" + player.currentXP + ";" + DateTime.Now;
+                File.WriteAllText(Application.persistentDataPath + "\\PlayerData.txt", data);
+            }
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -23,6 +26,11 @@ public class MainManager : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Escape))
             {
+                if (player != null)
+                {
+                    string data = player.currentLevel + ";" + player.currentHealth + ";" + player.currentXP + ";" + DateTime.Now;
+                    File.WriteAllText(Application.persistentDataPath + "\\PlayerData.txt", data);
+                }
                 SceneManager.LoadScene("Menu");
             }
 
