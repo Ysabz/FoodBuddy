@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     public int currentHealth;
     public int currentXP;
     public int currentLevel;
+    public AudioSource happySound;
+    public AudioSource sadSound;
 
     public TextAsset file;
     public GameObject level;
@@ -55,7 +57,7 @@ public class Player : MonoBehaviour
 
     }
 
-    public void PrintHappyAvatar(bool found)
+    public void DisplayHappyAvatar(bool found)
     {
         if (found)
         {
@@ -79,6 +81,7 @@ public class Player : MonoBehaviour
             }
 
             happyAvatar.SetActive(true);
+            happySound.Play();
         }
 
         else
@@ -88,7 +91,7 @@ public class Player : MonoBehaviour
 
     }
 
-    public void PrintSadAvatar(bool found)
+    public void DisplaySadAvatar(bool found)
     {
         if (found)
         {
@@ -109,6 +112,7 @@ public class Player : MonoBehaviour
                 healthBar.SetHealth(currentHealth);
             }
             sadAvatar.SetActive(true);
+            sadSound.Play();
         }
 
         else
