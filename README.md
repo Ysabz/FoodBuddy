@@ -7,3 +7,6 @@ Please use the following QR code for healthy food scan :
 
 ![image](https://user-images.githubusercontent.com/44596199/115945616-83e1fd80-a48a-11eb-8383-926bf44c2d10.png)
 
+Download the APK from this link: 
+https://drive.google.com/file/d/1Mvp79cPL38GOgSD_vSbODQFVGNNad2aW/view?usp=sharing
+
